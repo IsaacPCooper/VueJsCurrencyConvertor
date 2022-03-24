@@ -43,16 +43,22 @@ export default {
 
           this.secondAmount = this.baseAmount * this.rate.toFixed(2);
           this.secondAmount = this.secondAmount.toFixed(2);
+          this.convertedResult = this.baseAmount * this.rate.toFixed(2);
           this.filteredRate = this.rate.toFixed(2);
-        });
+
+          //this would be best used in another method.
+           var conversion =[this.baseAmount, this.baseCurrencyType, this.rate, this.convertedResult, this.secondCurrencyType]
+           return this.$store.dispatch('addConversion', {baseAmount: this.baseAmount, 
+                baseCurrencyType:this.baseCurrencyType, 
+                rate: this.rate, 
+                Result:this.convertedResult, 
+                secondCurrencyType:this.secondCurrencyType})
+        }); 
     },
     inputValidate(event) {
       if (!/\d/.test(event.key) && event.key !== ".")
         return event.preventDefault();
     },
-    storeConversion() {
-        return this.$store.dispatch([baseAmount, secondAmount, rate])
-    }
   },
   mounted() {
     this.fetchData();
@@ -109,7 +115,7 @@ export default {
       </p>
 
       <!-- This button is used to convert values in this case, as the recorded conversions are to be used in a table, this also makes testing easier, as less requests are made -->
-      <button class="my-4 block bg-blue-700 text-white p-2 rounded shadow" @click="fetchData()">
+      <button class="my-4 block bg-blue-700 text-white p-2 rounded shadow" @click="fetchData();">
         Convert Value
       </button>
 

@@ -2,7 +2,7 @@
 export default {
   computed: {
     Conversions(){
-      return this.$store.getters.
+      return this.$store.getters.getAllConversions;
     }
   }
 }
@@ -14,6 +14,7 @@ export default {
     <div
       class="bg-white w-full sm:max-w-lg my-6 px-6 py-4 shadow-md sm:rounded-lg"
     >
+
     {{Conversions}}
 
     </div>

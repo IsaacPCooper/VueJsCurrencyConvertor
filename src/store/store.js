@@ -1,27 +1,31 @@
-import Vuex from 'vuex'
-import Vue from 'vue'
+import { createStore } from 'vuex'
 
-Vue.use(Vuex)
-
-export default new Vuex.Store({
+export default createStore({
     state: {
-        allConversions: []
+        conversions: [
+            {
+                baseAmount: '', 
+                baseCurrencyType:'', 
+                rate:'', 
+                Result:'', 
+                secondCurrencyType:''
+            }
+        ]
     },
 
     mutations: {
-        addConversions(state, payload) {
-            state.allConversions.push(payload);
+        UPDATE_CONVERSIONS(state, payload) {
+            state.conversions = payload
         }
     },
     actions: {
-        async addConversions(state){
-            const Conversion = await fetch()
-        }
+        addConversion(context, payload){
+            const conversions = context.state.conversions
+            conversions.push(payload)
+            context.commit('UPDATE_CONVERSIONS', conversions)
+        } 
     },
     getters: {
-        getAllConversions: state => state.allConversions
+        getAllConversions: state => state.conversions
     },
-    actions: {
-
-    }
 });
