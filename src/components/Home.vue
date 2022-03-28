@@ -30,7 +30,7 @@ export default {
       var secondCurrencyType = this.secondCurrencyType;
 
       //this could also be handled via axios, but due to the scope of this application, fetch does the job.
-      fetch(`http://www.floatrates.com/daily/${this.baseCurrencyType}.json`)
+      fetch(`https://www.floatrates.com/daily/${this.baseCurrencyType}.json`)
         .then((res) => res.json())
         .then((data) => {
           this.data = data;
