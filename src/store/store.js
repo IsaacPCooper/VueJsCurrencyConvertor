@@ -16,7 +16,8 @@ export default createStore({
     mutations: {
         UPDATE_CONVERSIONS(state, payload) {
             state.conversions = payload
-        }
+        },
+        
     },
     actions: {
         addConversion(context, payload){

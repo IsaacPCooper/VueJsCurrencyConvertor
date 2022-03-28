@@ -33,9 +33,7 @@ export default {
       fetch(`http://www.floatrates.com/daily/${this.baseCurrencyType}.json`)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data[secondCurrencyType]);
           this.data = data;
-
           //shorthand validation check (if / else)
           this.baseCurrencyType != this.secondCurrencyType
             ? (this.rate = data[secondCurrencyType].rate)
@@ -46,7 +44,8 @@ export default {
           this.convertedResult = this.baseAmount * this.rate.toFixed(2);
           this.filteredRate = this.rate.toFixed(2);
 
-          //this would be best used in another method.
+          //this would be best used in another method.#
+      
            var conversion =[this.baseAmount, this.baseCurrencyType, this.rate, this.convertedResult, this.secondCurrencyType]
            return this.$store.dispatch('addConversion', {baseAmount: this.baseAmount, 
                 baseCurrencyType:this.baseCurrencyType, 
@@ -55,6 +54,7 @@ export default {
                 secondCurrencyType:this.secondCurrencyType})
         }); 
     },
+    
     inputValidate(event) {
       if (!/\d/.test(event.key) && event.key !== ".")
         return event.preventDefault();
@@ -87,7 +87,7 @@ export default {
           selectName="Base Dropdown"
           selectID="baseCurrencyType"
           v-model="baseCurrencyType"
-          @change="fetchData()"
+          
         />
       </div>
       <h2 class="text-xl font-semibold my-4">Converted Value</h2>
@@ -105,7 +105,6 @@ export default {
           selectName="Secondary Dropdown"
           selectID="secondCurrencyType"
           v-model="secondCurrencyType"
-          @change="fetchData()"
         />
       </div>
       <p class="my-4">
@@ -119,8 +118,9 @@ export default {
         Convert Value
       </button>
 
-      <router-link to="/history">Conversion History</router-link>
+      
     </div>
+    <router-link to="/history" class="text-white font-semibold">Conversion History ➡</router-link>
   </div>
 </template>
 
